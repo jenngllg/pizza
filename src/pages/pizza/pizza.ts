@@ -17,7 +17,7 @@ export class PizzaPage {
 
   constructor(private storage: Storage, public navCtrl: NavController, public navParams: NavParams, public pizzaService: PizzaService) {
     this.id = this.navParams.get('id');
-    this.item = {};
+    this.item = {id:null};
   }
 
   protected ionViewWillEnter(): void {
