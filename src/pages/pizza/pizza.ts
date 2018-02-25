@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import {NavController, NavParams, ToastController} from 'ionic-angular';
 import { PizzaService } from "../../app/pizza/pizza.service";
 import {Pizza} from "../../app/pizza/pizza";
 import { Storage } from '@ionic/storage';
+
 
 @Component({
   selector: 'page-pizza',
@@ -19,7 +20,9 @@ export class PizzaPage {
     private storage: Storage,
     public navCtrl: NavController,
     public navParams: NavParams,
-    public pizzaService: PizzaService) {
+    public pizzaService: PizzaService,
+    private toastCtrl: ToastController
+    ) {
 
     this.id = this.navParams.get('id');
     this.item = {id:null};
@@ -45,7 +48,16 @@ export class PizzaPage {
       else {
         data = [item];
       }
+      this.presentToast('Pizza ajoutée au panier !');
       this.storage.set('ids', data);
     });
+  }
+
+  presentToast(message: string) {
+    this.toastCtrl.create({
+      message: message,
+      duration: 3000,
+      position: 'bottom'
+    }).present();
   }
 }

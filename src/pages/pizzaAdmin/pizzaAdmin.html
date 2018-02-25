@@ -14,7 +14,50 @@
   <h1><ion-input placeholder="Nom" [(ngModel)]="item.name"></ion-input></h1>
   <h2><ion-input type="number" placeholder="Prix" pattern="[0-9]+" [(ngModel)]="item.price"></ion-input></h2>
   <p><ion-input placeholder="Description" [(ngModel)]="item.desc"></ion-input></p>
-  <p>{{item.ingredients}}</p>
+  <ion-list>
+
+    <ion-item>
+      <ion-label>Crème</ion-label>
+      <ion-checkbox [(ngModel)]="ingredientsMap.creme"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label >Sauce tomate</ion-label>
+      <ion-checkbox [(ngModel)]="ingredientsMap.tomate"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Raclette</ion-label>
+      <ion-checkbox [(ngModel)]="ingredientsMap.raclette"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Champignons</ion-label>
+      <ion-checkbox [(ngModel)]="ingredientsMap.champignon"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Oignons</ion-label>
+      <ion-checkbox [(ngModel)]="ingredientsMap.oignon"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Poivrons</ion-label>
+      <ion-checkbox [(ngModel)]="ingredientsMap.poivron"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Boulettes de viande</ion-label>
+      <ion-checkbox [(ngModel)]="ingredientsMap.boulette"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+    <ion-label>Pepperoni</ion-label>
+    <ion-checkbox disabled="true" [(ngModel)]="ingredientsMap.pepperoni"></ion-checkbox>
+  </ion-item>
+    <ion-item>
+      <ion-label>Lardons</ion-label>
+      <ion-checkbox [(ngModel)]="ingredientsMap.lardon"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Poulet</ion-label>
+      <ion-checkbox [(ngModel)]="ingredientsMap.poulet"></ion-checkbox>
+    </ion-item>
+
+  </ion-list>
   <button ion-button color="default" (click)="takePicture()"><ion-icon name="camera"></ion-icon></button>
   <button ion-button color="secondary" (click)="modify(item)"><ion-icon name="checkmark-circle"></ion-icon></button>
   <button ion-button color="danger" (click)="delete(item)"><ion-icon name="trash"></ion-icon></button>

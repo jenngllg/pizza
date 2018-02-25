@@ -18,6 +18,9 @@ export class PizzaAdminPage {
   base64Image:string;
   base64Data:string;
   message:string;
+  ingredientsMap:Map<string, boolean>;
+
+  test: boolean;
 
   constructor(
     private storage: Storage,
@@ -29,8 +32,18 @@ export class PizzaAdminPage {
     ) {
 
     this.id = this.navParams.get('id');
-    this.item = {id:null};
-
+    this.item = {id:null, ingredients: []};
+    this.ingredientsMap = new Map();
+    this.ingredientsMap.set('creme', false);
+    this.ingredientsMap.set('tomate', false);
+    this.ingredientsMap.set('raclette', false);
+    this.ingredientsMap.set('champignon', false);
+    this.ingredientsMap.set('oignon', false);
+    this.ingredientsMap.set('poivron', false);
+    this.ingredientsMap.set('boulette', false);
+    this.ingredientsMap.set('pepperoni', false);
+    this.ingredientsMap.set('lardon', false);
+    this.ingredientsMap.set('poulet', false);
   }
 
   protected ionViewWillEnter(): void {
@@ -39,15 +52,31 @@ export class PizzaAdminPage {
     }
   }
 
+  //récupérer une pizza par id
   private getPizza(id: number): void {
     this.pizzaService.getPizza(id).then(
       pizza => {
         this.item = pizza as Pizza;
+        this.ingredientsMap.forEach((value, key) => {
+          if (this.item.ingredients && -1 != this.item.ingredients.indexOf(key)) {
+            this.ingredientsMap[key] = true;
+          }
+        });
+
       })
       .catch(err => console.error(err));
   }
 
+  //modifier une pizza ou en créer une
   public modify(item: Pizza): void {
+    this.item.ingredients = [];
+
+    this.ingredientsMap.forEach((value, key) => {
+      if (this.ingredientsMap[key]) {
+        this.item.ingredients.push(key);
+      }
+    });
+
     if (item.id) {
       this.pizzaService.put(item)
         .then(() =>  {
@@ -66,6 +95,7 @@ export class PizzaAdminPage {
     }
   }
 
+  //supprimer une pizza
   public delete(item: Pizza): void {
     this.pizzaService.delete(item.id)
       .then(() =>  {

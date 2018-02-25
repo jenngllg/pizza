@@ -6,14 +6,14 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content style="background-color: #36353a!important;">
   <ion-searchbar (ionInput)="filterItems()" [(ngModel)]="searchQuery" placeholder="Rechercher"></ion-searchbar>
 
   <button ion-button color="secondary" (click)="add()" *ngIf="admin">Ajouter une pizza </button>
 
-  <ion-list [virtualScroll]="items" [approxItemHeight]="'40px'">
+  <ion-list [virtualScroll]="items" [approxItemHeight]="'40px'" >
     <ion-item *virtualItem="let item" (click)="selectPizza(item)">
-      <ion-card>
+      <ion-card style="background-color: #36353a!important;" >
         <img src="{{item.picture}}">
         <ion-card-content id="lower-card">
           <ion-card-title>
