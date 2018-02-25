@@ -17,6 +17,7 @@ export class CartPage {
 
   private pizzaArray: Pizza[] = [];
   private pizzaLotArray: PizzaLot[] = [];
+  private total: number;
 
   constructor(private storage: Storage, public navCtrl: NavController,  public pizzaService: PizzaService) {
   }
@@ -51,7 +52,7 @@ export class CartPage {
               })
             }
           }
-          ).catch(err => {
+          ).then(() => this.calculateTotal()).catch(err => {
             console.error(err);
             this.storage.clear();
           })
@@ -72,7 +73,14 @@ export class CartPage {
     });
 
     this.pizzaArray = _.pluck(this.pizzaLotArray, 'pizza');
+    this.calculateTotal();
     this.storage.set('ids', this.pizzaArray);
   }
 
+  private calculateTotal(): void {
+    this.total = 0;
+    this.pizzaLotArray.forEach((value2) => {
+      this.total += value2.quantity * value2.pizza.price;
+    });
+  }
 }

@@ -62,7 +62,6 @@ export class PizzaAdminPage {
             this.ingredientsMap[key] = true;
           }
         });
-
       })
       .catch(err => console.error(err));
   }
