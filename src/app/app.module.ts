@@ -9,6 +9,7 @@ import { MyApp } from './app.component';
 import { ListPage } from '../pages/list/list';
 import { CartPage } from '../pages/cart/cart';
 import { ParametersPage } from '../pages/parameters/parameters';
+import {TabsPage} from "../pages/tabs/tabs";
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { ParametersPage } from '../pages/parameters/parameters';
     MyApp,
     ListPage,
     CartPage,
-    ParametersPage
+    ParametersPage,
+    TabsPage
   ],
   imports: [
     BrowserModule,
@@ -28,7 +30,8 @@ import { ParametersPage } from '../pages/parameters/parameters';
     MyApp,
     ListPage,
     CartPage,
-    ParametersPage
+    ParametersPage,
+    TabsPage
   ],
   providers: [
     StatusBar,
