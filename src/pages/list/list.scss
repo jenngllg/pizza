@@ -1,4 +1,15 @@
-ion-card-content#lower-card {
-  background: #ef2801;
+page-list {
+  #lower-card {
+    background: #ef2801!important;
+  }
+
+  .item-inner, .list {
+    background-color: #36353a!important;
+  }
+
+  p {
+    color: white!important;
+  }
 }
+
 
