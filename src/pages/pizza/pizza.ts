@@ -12,7 +12,7 @@ import { Storage } from '@ionic/storage';
 
 export class PizzaPage {
 
-  public item: Pizza;
+  public item: Pizza|any;
   public id: number;
 
   constructor(private storage: Storage, public navCtrl: NavController, public navParams: NavParams, public pizzaService: PizzaService) {
