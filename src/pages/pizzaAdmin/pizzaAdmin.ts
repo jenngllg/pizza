@@ -34,7 +34,9 @@ export class PizzaAdminPage {
   }
 
   protected ionViewWillEnter(): void {
-    this.getPizza(this.id);
+    if (this.id) {
+      this.getPizza(this.id);
+    }
   }
 
   private getPizza(id: number): void {
