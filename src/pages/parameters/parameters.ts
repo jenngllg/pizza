@@ -10,7 +10,10 @@ import { ToastController } from 'ionic-angular';
 })
 
 export class ParametersPage {
+  admin: boolean;
+
   constructor(public navCtrl: NavController, private storage: Storage, private toastCtrl: ToastController) {
+    this.storage.get('admin').then(value => this.admin = value);
   }
 
   public isAdmin(event: any): void {

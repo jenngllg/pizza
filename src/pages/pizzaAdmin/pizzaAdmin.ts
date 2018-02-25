@@ -3,6 +3,7 @@ import {NavController, NavParams, ToastController} from 'ionic-angular';
 import { PizzaService } from "../../app/pizza/pizza.service";
 import {Pizza} from "../../app/pizza/pizza";
 import { Storage } from '@ionic/storage';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 @Component({
   selector: 'page-pizzaAdmin',
@@ -14,13 +15,18 @@ export class PizzaAdminPage {
 
   public item: Pizza|any;
   public id: number;
+  base64Image:string;
+  base64Data:string;
+  message:string;
 
   constructor(
     private storage: Storage,
     public navCtrl: NavController,
     public navParams: NavParams,
     public pizzaService: PizzaService,
-    private toastCtrl: ToastController) {
+    private toastCtrl: ToastController,
+    private camera: Camera,
+    ) {
 
     this.id = this.navParams.get('id');
     this.item = {id:null};
@@ -40,12 +46,22 @@ export class PizzaAdminPage {
   }
 
   public modify(item: Pizza): void {
-    this.pizzaService.put(item)
-    .then(() =>  {
-      this.presentToast('Pizza modifiée avec succès !');
-      this.navCtrl.pop(); //retour en arrière avec les infos mises à jour
-    })
-      .catch(err => console.error(err));
+    if (item.id) {
+      this.pizzaService.put(item)
+        .then(() =>  {
+          this.presentToast('Pizza modifiée avec succès !');
+          this.navCtrl.pop(); //retour en arrière avec les infos mises à jour
+        })
+        .catch(err => console.error(err));
+    }
+    else {
+      this.pizzaService.post(item)
+        .then(() =>  {
+          this.presentToast('Pizza ajoutée avec succès !');
+          this.navCtrl.pop(); //retour en arrière avec les infos mises à jour
+        })
+        .catch(err => console.error(err));
+    }
   }
 
   public delete(item: Pizza): void {
@@ -57,12 +73,36 @@ export class PizzaAdminPage {
       .catch(err => console.error(err));
   }
 
+  //affichage du toast
   presentToast(message: string) {
     this.toastCtrl.create({
       message: message,
       duration: 3000,
       position: 'bottom'
     }).present();
+  }
+
+  //prendre une photo
+  takePicture() {
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      correctOrientation : true
+    };
+
+    this.camera.getPicture(options)
+      .then((imageData) =>
+        {
+          this.base64Image = 'data:image/jpeg;base64,' + imageData;
+          this.base64Data = imageData;
+          this.item.picture = this.base64Image;
+        },
+        (err) =>
+        {
+          console.log(err);
+        });
   }
 
 }

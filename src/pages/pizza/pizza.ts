@@ -15,7 +15,12 @@ export class PizzaPage {
   public item: Pizza|any;
   public id: number;
 
-  constructor(private storage: Storage, public navCtrl: NavController, public navParams: NavParams, public pizzaService: PizzaService) {
+  constructor(
+    private storage: Storage,
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public pizzaService: PizzaService) {
+
     this.id = this.navParams.get('id');
     this.item = {id:null};
   }

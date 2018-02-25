@@ -9,6 +9,8 @@
 <ion-content>
   <ion-searchbar (ionInput)="filterItems()" [(ngModel)]="searchQuery" placeholder="Rechercher"></ion-searchbar>
 
+  <button ion-button color="secondary" (click)="add()" *ngIf="admin">Ajouter une pizza </button>
+
   <ion-list [virtualScroll]="items" [approxItemHeight]="'40px'">
     <ion-item *virtualItem="let item" (click)="selectPizza(item)">
       <ion-card>

@@ -1,17 +1,21 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
+    <ion-title *ngIf="item.id">
       {{item.name}} - AdminMode
+    </ion-title>
+    <ion-title *ngIf="!item.id">
+      Création - AdminMode
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <img src="{{item.picture}}">
-  <h1><ion-input placeholder="{{item.name}}" [(ngModel)]="item.name"></ion-input></h1>
-  <h1><ion-input type="number" placeholder="{{item.price}}" pattern="[0-9]+" [(ngModel)]="item.price"></ion-input></h1>
-  <p><ion-input placeholder="{{item.desc}}" [(ngModel)]="item.desc"></ion-input></p>
+  <h1><ion-input placeholder="Nom" [(ngModel)]="item.name"></ion-input></h1>
+  <h2><ion-input type="number" placeholder="Prix" pattern="[0-9]+" [(ngModel)]="item.price"></ion-input></h2>
+  <p><ion-input placeholder="Description" [(ngModel)]="item.desc"></ion-input></p>
   <p>{{item.ingredients}}</p>
+  <button ion-button color="default" (click)="takePicture()"><ion-icon name="camera"></ion-icon></button>
   <button ion-button color="secondary" (click)="modify(item)"><ion-icon name="checkmark-circle"></ion-icon></button>
   <button ion-button color="danger" (click)="delete(item)"><ion-icon name="trash"></ion-icon></button>
 </ion-content>

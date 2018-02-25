@@ -53,5 +53,16 @@ export class PizzaService {
     });
   }
 
+  public async post(item: Pizza): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.pizzaUrl, item).subscribe(data => {
+          resolve(data);
+        },
+        (err: HttpErrorResponse) => {
+          reject(err);
+        });
+    });
+  }
+
 }
 

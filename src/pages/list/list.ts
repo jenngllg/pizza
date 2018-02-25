@@ -19,14 +19,17 @@ export class ListPage {
   public items: Pizza[] = [];
   public defaultItems: Pizza[] = [];
   searchQuery: string = '';
+  admin: boolean;
 
   constructor(public navCtrl: NavController,
               private pizzaService: PizzaService, //injecte le service dans la classe listPage
               private storage: Storage)
-  { }
+  {
+  }
 
   protected ionViewWillEnter(): void {
       this.initializeItems();
+    this.storage.get('admin').then(value => this.admin = value);
   }
 
   private initializeItems(): void {
@@ -75,6 +78,11 @@ export class ListPage {
       }
     });
   }
+
+  public add():void {
+    this.navCtrl.push(PizzaAdminPage);
+  }
+
 }
 
 
