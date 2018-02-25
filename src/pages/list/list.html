@@ -13,7 +13,7 @@
     <ion-item *virtualItem="let item" (click)="selectPizza(item)">
       <ion-card>
         <img src="{{item.picture}}">
-        <ion-card-content>
+        <ion-card-content id="lower-card">
           <ion-card-title>
             <h2>{{ item.name }} - {{ item.price }} €</h2>
           </ion-card-title>
@@ -22,10 +22,6 @@
       </ion-card>
     </ion-item>
   </ion-list>
-
-
-
-
 
 </ion-content>
 

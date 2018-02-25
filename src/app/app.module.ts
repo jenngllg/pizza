@@ -12,6 +12,7 @@ import { CartPage } from '../pages/cart/cart';
 import { ParametersPage } from '../pages/parameters/parameters';
 import { PizzaPage } from "../pages/pizza/pizza";
 import { TabsPage } from "../pages/tabs/tabs";
+import { PizzaAdminPage } from "../pages/pizzaAdmin/pizzaAdmin";
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { TabsPage } from "../pages/tabs/tabs";
     CartPage,
     ParametersPage,
     PizzaPage,
+    PizzaAdminPage,
     TabsPage
   ],
   imports: [
@@ -36,6 +38,7 @@ import { TabsPage } from "../pages/tabs/tabs";
     CartPage,
     ParametersPage,
     PizzaPage,
+    PizzaAdminPage,
     TabsPage
   ],
   providers: [

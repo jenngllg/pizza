@@ -32,13 +32,13 @@ export class PizzaPage {
       .catch(err => console.error(err));
   }
 
-  private addToCart(id: number): void {
+  private addToCart(item: Pizza): void {
     this.storage.get('ids').then(data => {
       if (data) {
-        data.push(id);
+        data.push(item);
       }
       else {
-        data = [id];
+        data = [item];
       }
       this.storage.set('ids', data);
     });

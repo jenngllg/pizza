@@ -5,6 +5,8 @@ import {Pizza} from "../../app/pizza/pizza";
 
 import _ from 'underscore';
 import {PizzaPage} from "../pizza/pizza";
+import {Storage} from "@ionic/storage";
+import {PizzaAdminPage} from "../pizzaAdmin/pizzaAdmin";
 
 @Component({
   selector: 'page-list',
@@ -19,7 +21,8 @@ export class ListPage {
   searchQuery: string = '';
 
   constructor(public navCtrl: NavController,
-              private pizzaService: PizzaService) //injecte le service dans la classe listPage
+              private pizzaService: PizzaService, //injecte le service dans la classe listPage
+              private storage: Storage)
   { }
 
   protected ionViewWillEnter(): void {
@@ -63,8 +66,15 @@ export class ListPage {
     }
 
     private selectPizza(item: Pizza):void {
-      this.navCtrl.push(PizzaPage, {id: item.id});
-    }
+    this.storage.get('admin').then(value => {
+      if (value) {
+        this.navCtrl.push(PizzaAdminPage, {id: item.id});
+      }
+      else {
+        this.navCtrl.push(PizzaPage, {id: item.id});
+      }
+    });
+  }
 }
 
 
