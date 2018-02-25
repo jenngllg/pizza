@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Les pizzas
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar (ionInput)="filterItems()" [(ngModel)]="searchQuery" placeholder="Rechercher"></ion-searchbar>
+
+  <ion-list [virtualScroll]="items" [approxItemHeight]="'40px'">
+    <ion-item *virtualItem="let item" (click)="selectPizza(item)">
+      <ion-avatar item-start>
+        <img src="{{item.picture}}">
+      </ion-avatar>
+      <h2>{{ item.name }}</h2>
+      <h3>{{ item.price }} €</h3>
+      <p>{{ item.desc }}{{item.description > 30 ? '...' : '' }}</p>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+
+
