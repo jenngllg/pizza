@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{item.name}}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <img src="{{item.picture}}">
+  <h1>{{item.name}}</h1>  {{item.price}} €
+  <p>{{item.desc}}</p>
+  <p>{{item.ingredients}}</p>
+  Ajouter au panier : <button ion-button color="secondary" (click)="addToCart(item)"><ion-icon name="cart"></ion-icon></button>
+</ion-content>

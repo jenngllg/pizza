@@ -12,6 +12,5 @@ export class TabsPage {
   parametersPage = ParametersPage;
 
   constructor() {
-
   }
 }

@@ -11,14 +11,21 @@
 
   <ion-list [virtualScroll]="items" [approxItemHeight]="'40px'">
     <ion-item *virtualItem="let item" (click)="selectPizza(item)">
-      <ion-avatar item-start>
+      <ion-card>
         <img src="{{item.picture}}">
-      </ion-avatar>
-      <h2>{{ item.name }}</h2>
-      <h3>{{ item.price }} €</h3>
-      <p>{{ item.desc }}{{item.description > 30 ? '...' : '' }}</p>
+        <ion-card-content>
+          <ion-card-title>
+            <h2>{{ item.name }} - {{ item.price }} €</h2>
+          </ion-card-title>
+          <p>{{ item.desc }}</p>
+        </ion-card-content>
+      </ion-card>
     </ion-item>
   </ion-list>
+
+
+
+
 
 </ion-content>
 

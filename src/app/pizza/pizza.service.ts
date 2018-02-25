@@ -17,5 +17,17 @@ export class PizzaService {
         });
     });
   }
+
+  public async getPizza(id: number): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.pizzaUrl +'/'+ id).subscribe(data => {
+          resolve(data);
+        },
+        (err: HttpErrorResponse) => {
+          reject(err);
+        });
+    });
+  }
+
 }
 

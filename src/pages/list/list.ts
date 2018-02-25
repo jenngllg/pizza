@@ -4,6 +4,7 @@ import {PizzaService} from "../../app/pizza/pizza.service";
 import {Pizza} from "../../app/pizza/pizza";
 
 import _ from 'underscore';
+import {PizzaPage} from "../pizza/pizza";
 
 @Component({
   selector: 'page-list',
@@ -59,6 +60,10 @@ export class ListPage {
 
       private resetItem():void {
         this.items = this.defaultItems;
+    }
+
+    private selectPizza(item: Pizza):void {
+      this.navCtrl.push(PizzaPage, {id: item.id});
     }
 }
 
